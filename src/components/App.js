@@ -1,7 +1,7 @@
 import React from 'react'
-
+import {FetchQuestion} from './FetchQuestion.js'
 const App = () => {
-  return <button className="btn btn-primary">Hello !</button>
+  return <FetchQuestion/>
 }
 
 export default App
