@@ -3,12 +3,13 @@ import { OnSubmit } from './OnSubmit'
 import { FetchQuestion } from './FetchQuestion'
 import { PresentQuestions } from './PresentQuestions'
 import { Result } from './Result'
-var answerKey = [];
-var Qbank = [];
-var array = [];
+
 export class Questions extends React.Component {
   constructor(props) {
     super(props);
+    this.answerKey = [];
+    this.array = [];
+    this.Qbank = [];
     this.createRandomQuestion = this.createRandomQuestion.bind(this);
     this.answerStore = this.answerStore.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
@@ -20,15 +21,15 @@ export class Questions extends React.Component {
   }
 
   createRandomQuestion() {
-
-    while (array.length <= 9) {
+    while (this.array.length <= 9) {
       let temp = 1 + Math.floor(Math.random() * 20);
-      if (array.indexOf(temp) < 0) {
-        array.push(temp);
+      if (this.array.indexOf(temp) < 0) {
+        this.array.push(temp);
       }
     }
-    Qbank = this.state.Qbank_Check.filter(function (element, index) {
-      if (array.indexOf(index + 1) >= 0) {
+
+    this.Qbank = this.state.Qbank_Check.filter((element, index) => {
+      if (this.array.indexOf(index + 1) >= 0) {
         return true;
       }
       else {
@@ -39,8 +40,8 @@ export class Questions extends React.Component {
 
   checkAnswer() {
     let count = 0;
-    Qbank.forEach((element) => {
-      var myAnswer = answerKey.find(function (answerElement) {
+    this.Qbank.forEach((element) => {
+      var myAnswer = this.answerKey.find(function (answerElement) {
         return (answerElement.id == element.id);
       })
       if (myAnswer != undefined) {
@@ -59,7 +60,7 @@ export class Questions extends React.Component {
       let temp = {};
       temp.id = id;
       temp.answer = answer;
-      answerKey.push(temp);
+      this.answerKey.push(temp);
     }
     else {
       shouldReplace.answer = answer;
@@ -67,7 +68,7 @@ export class Questions extends React.Component {
   }
 
   shouldReplaceAnswer(id) {
-    let tempElement = answerKey.find((element) => {
+    let tempElement = this.answerKey.find((element) => {
       return element.id == id;
     })
     return tempElement;
@@ -75,14 +76,14 @@ export class Questions extends React.Component {
 
   render(props) {
     { this.createRandomQuestion() }
-    if(this.state.counter !=null){
-      return <Result correctAnswers = {this.state.counter}/>
+    if (this.state.counter != null) {
+      return <Result correctAnswers={this.state.counter} />
     }
     return (
       <div>
-        <PresentQuestions Qbank={Qbank} answerStore={this.answerStore} />
+        <PresentQuestions Qbank={this.Qbank} answerStore={this.answerStore} />
         <OnSubmit checkAnswer={this.checkAnswer.bind(this)} />
-        
+
       </div>
     );
   }
