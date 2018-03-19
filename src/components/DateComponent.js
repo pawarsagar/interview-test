@@ -2,30 +2,34 @@ import React from 'react'
 import dateDemo from './CandidateCredentials.json'
 import { FetchQuestion } from './FetchQuestion.js'
 
-let date = new Date().toLocaleDateString();
-let arrayDate = dateDemo.Date[0].ExamDate;
 class datePicker extends React.Component {
+    constructor(props) {
+        super(props);
+        this.date = new Date().toLocaleDateString();
+        this.temp = dateDemo.Date[0].ExamDate;
+        this.arrayDate = new Date(this.temp).toLocaleDateString();
+    }
     render() {
 
-        if (date == arrayDate) {
+        if (this.date == this.arrayDate) {
             alert("Today is your exam  ");
             return <FetchQuestion />
         }
-        else if (date <= arrayDate) {
+        else if (this.date <= this.arrayDate) {
             return (<div align="Center">
 
-            <p>Your Date is not arrive</p>
-           
+                <p>Your Date has not arrived yet!</p>
 
-        </div>);
+
+            </div>);
         }
         else {
             return (<div align="Center">
 
-            <p>You have passed of the Date</p>
-           
+                <p>Your exam date has passed!</p>
 
-        </div>);
+
+            </div>);
         }
 
 
