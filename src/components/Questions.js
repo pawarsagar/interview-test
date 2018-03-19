@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { OnSubmit } from './OnSubmit'
 import { FetchQuestion } from './FetchQuestion'
 import { PresentQuestions } from './PresentQuestions'
+import { Result } from './Result'
 var answerKey = [];
 var Qbank = [];
 var array = [];
@@ -14,6 +15,7 @@ export class Questions extends React.Component {
     this.shouldReplaceAnswer = this.shouldReplaceAnswer.bind(this);
     this.state = {
       Qbank_Check: props.Data,
+      counter: null,
     }
   }
 
@@ -36,18 +38,19 @@ export class Questions extends React.Component {
   }
 
   checkAnswer() {
-    let counter = 0;
+    let count = 0;
     Qbank.forEach((element) => {
       var myAnswer = answerKey.find(function (answerElement) {
         return (answerElement.id == element.id);
       })
       if (myAnswer != undefined) {
         if (myAnswer.answer == element.answer) {
-          counter++;
+          count++;
         }
       }
     });
-    console.log(counter);
+    console.log(count);
+    this.setState({ counter: count });
   }
 
   answerStore(id, answer) {
@@ -72,10 +75,14 @@ export class Questions extends React.Component {
 
   render(props) {
     { this.createRandomQuestion() }
+    if(this.state.counter !=null){
+      return <Result correctAnswers = {this.state.counter}/>
+    }
     return (
       <div>
         <PresentQuestions Qbank={Qbank} answerStore={this.answerStore} />
         <OnSubmit checkAnswer={this.checkAnswer.bind(this)} />
+        
       </div>
     );
   }

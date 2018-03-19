@@ -3,7 +3,6 @@ export function PresentQuestions(props) {
   const fontSet = {
     'fontSize' : 'medium',
   };
- console.log("These are props" + props);
   return (
     <div>
       {props.Qbank.map((element, index) => {

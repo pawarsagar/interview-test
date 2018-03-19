@@ -14,7 +14,7 @@ export class FetchQuestion extends React.Component {
     }
   }
   setQuestion() {
-    fetch('http://localhost:3000/question')
+    fetch('http://localhost:3000/question')       //host the qBank.json file on localhost 3000 before running
       .then(function (data) {
         return data.json();
       })
@@ -22,7 +22,6 @@ export class FetchQuestion extends React.Component {
         this.setState({
           questionSet: data,
         })
-        console.log(this.state.questionSet);
       })
   }
 
