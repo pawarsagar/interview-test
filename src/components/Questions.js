@@ -51,7 +51,6 @@ export class Questions extends React.Component {
         }
       }
     });
-    console.log(count);
     this.setState({ counter: count });
   }
 
