@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Questions } from './Questions'
 
 var loadQues_temp = 0;
-
 export class FetchQuestion extends React.Component {
 
   constructor(props) {
@@ -14,9 +13,8 @@ export class FetchQuestion extends React.Component {
       randomQuestion: [],
     }
   }
-  
   setQuestion() {
-    fetch('http://localhost:3000/question')       
+    fetch('http://localhost:3000/question')       //host the qBank.json file on localhost 3000 before running
       .then(function (data) {
         return data.json();
       })
