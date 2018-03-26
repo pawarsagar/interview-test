@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+
 export function PresentQuestions(props) {
+
   const fontSet = {
     'fontSize': 'medium',
   };
   return (
-    <div>
+    <div >
       {props.Qbank.map((element, index) => {
         return (
           <div style={{ fontSize: 'medium' }} key={element.id}>

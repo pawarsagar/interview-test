@@ -3,7 +3,8 @@ import { OnSubmit } from './OnSubmit'
 import { FetchQuestion } from './FetchQuestion'
 import { PresentQuestions } from './PresentQuestions'
 import { Result } from './Result'
-import {TimerComponent} from './TimerComponent'
+import { TimerComponent } from './TimerComponent'
+import ReactDOM from 'react-dom'
 
 export class Questions extends React.Component {
   constructor(props) {
@@ -81,14 +82,14 @@ export class Questions extends React.Component {
     }
     return (
       <div>
-      
-        <div> <TimerComponent triggerParentUpdate={this.checkAnswer}/></div>
-        <div class=" table-bordered" >
-        <PresentQuestions Qbank={this.Qbank} answerStore={this.answerStore} />
-        <OnSubmit checkAnswer={this.checkAnswer.bind(this)} />
+
+        <div> <TimerComponent triggerParentUpdate={this.checkAnswer} /></div> 
+        <div >
+          <PresentQuestions Qbank={this.Qbank} answerStore={this.answerStore} />
+          <OnSubmit checkAnswer={this.checkAnswer.bind(this)} />
         </div>
       </div>
-      
+
     );
   }
 }
