@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 export function PresentQuestions(props) {
   const fontSet = {
-    'fontSize': 'medium',
+    'fontSize' : 'medium',
   };
   return (
     <div>
       {props.Qbank.map((element, index) => {
         return (
-          <div style={{ fontSize: 'medium' }} key={element.id}>
+          <div style={{fontSize : 'medium'}} key={element.id}>
             <p><b>{index + 1}{". "}{element.question}</b></p>
             <div className="radio">
               <label><input type="radio" name={element.id} id={element.id} onClick={() => props.answerStore(element.id, element.options.option1)} />{element.options.option1}</label ><br />
