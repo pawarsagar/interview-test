@@ -5,6 +5,7 @@ import { PresentQuestions } from './PresentQuestions'
 import { Result } from './Result'
 import { TimerComponent } from './TimerComponent'
 
+
 export class Questions extends React.Component {
   constructor(props) {
     super(props);
@@ -80,11 +81,15 @@ export class Questions extends React.Component {
       return <Result correctAnswers={this.state.counter} />
     }
     return (
-      <div>
-        <TimerComponent triggerParentUpdate={this.checkAnswer} />
+      <div >
+      <TimerComponent triggerParentUpdate={this.checkAnswer}   />
+   
+        
+    
+        <div className="container">
         <PresentQuestions Qbank={this.Qbank} answerStore={this.answerStore} />
         <OnSubmit checkAnswer={this.checkAnswer.bind(this)} />
-      </div >
+      </div ></div>  
     );
   }
 }

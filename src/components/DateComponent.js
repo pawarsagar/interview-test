@@ -15,7 +15,7 @@ class datePicker extends React.Component {
 
         if (this.date == this.arrayDate) {
             alert("Today is your exam  ");
-            return (<div><FetchQuestion /></div>)
+            return (<FetchQuestion />)
         }
         else if (this.date <= this.arrayDate) {
             return (<div align="Center">
