@@ -81,9 +81,11 @@ export class Questions extends React.Component {
     }
     return (
       <div>
-        <TimerComponent triggerParentUpdate={this.checkAnswer} />
+        <TimerComponent triggerParentUpdate={this.checkAnswer} style={{position:'fixed'}}/>
+        <div className="container">
         <PresentQuestions Qbank={this.Qbank} answerStore={this.answerStore} />
         <OnSubmit checkAnswer={this.checkAnswer.bind(this)} />
+        </div>
       </div >
     );
   }
