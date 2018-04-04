@@ -53,6 +53,26 @@ export class Questions extends React.Component {
       }
     });
     this.setState({ counter: count });
+
+    this.postResult();
+
+  }
+
+  postResult(){
+    fetch("https://brave-goat-271242-dev-ed.my.salesforce.com/services/apexrest/Result_in_Feedback",
+    {
+        headers: {
+          'Authorization': 'Bearer 00D7F000002D9vK!AQgAQBjxepa8Ol9SF0C1tqV4y2eHZI2JLtGgPL4M1PiyyNanSNkZJo9cg7YSiYhdQxkCoLtPJ507Gj2rgr6gP2ZFEVLXDkFT',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin':'http://localhost:9000'
+        },
+        method: "POST",
+        body: JSON.stringify({ result: this.state.counter })
+    })
+    .then(function(res){ console.log(res) })
+    .catch(function(res){ console.log(res) })
+
+  //  alert("Post is been made "+this.state.counter)
   }
 
   answerStore(id, answer) {
@@ -81,15 +101,13 @@ export class Questions extends React.Component {
       return <Result correctAnswers={this.state.counter} />
     }
     return (
-      <div >
-      <TimerComponent triggerParentUpdate={this.checkAnswer}   />
-   
-        
-    
+      <div>
+        <TimerComponent triggerParentUpdate={this.checkAnswer} style={{position:'fixed'}}/>
         <div className="container">
         <PresentQuestions Qbank={this.Qbank} answerStore={this.answerStore} />
         <OnSubmit checkAnswer={this.checkAnswer.bind(this)} />
-      </div ></div>  
+        </div>
+      </div >
     );
   }
 }

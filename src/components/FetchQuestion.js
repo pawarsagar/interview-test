@@ -38,7 +38,7 @@ export class FetchQuestion extends React.Component {
     }
     else {
       return (
-        <div className="container">
+        <div>
           <Questions Data={this.state.questionSet} />
         </div>
       )
