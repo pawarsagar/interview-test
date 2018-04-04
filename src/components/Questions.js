@@ -23,13 +23,12 @@ export class Questions extends React.Component {
   }
 
   createRandomQuestion() {
-    while (this.array.length <= 9) {
-      let temp = 1 + Math.floor(Math.random() * 20);
+    while (this.array.length <= 19) {  //Number of Questions to be displayed
+      let temp = 1 + Math.floor(Math.random() * 40);  //Number of questions being received
       if (this.array.indexOf(temp) < 0) {
         this.array.push(temp);
       }
     }
-
     this.Qbank = this.state.Qbank_Check.filter((element, index) => {
       if (this.array.indexOf(index + 1) >= 0) {
         return true;
@@ -41,13 +40,14 @@ export class Questions extends React.Component {
   }
 
   checkAnswer() {
+    console.log(this.answerKey);
     let count = 0;
     this.Qbank.forEach((element) => {
       var myAnswer = this.answerKey.find(function (answerElement) {
-        return (answerElement.id == element.id);
+        return (answerElement.id == element.Id);
       })
       if (myAnswer != undefined) {
-        if (myAnswer.answer == element.answer) {
+        if (myAnswer.answer == element.Correct_Answer__c.Answer) {
           count++;
         }
       }
